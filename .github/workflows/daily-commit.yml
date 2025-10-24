@@ -12,7 +12,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: 24f3000719@ds.study.iitm.ac.in
+    - name: Commit update by 24f3000719@ds.study.iitm.ac.in
+
       run: |
         echo "Daily update: $(date)" >> daily-update.txt
         echo "24f3000719@ds.study.iitm.ac.in" 
