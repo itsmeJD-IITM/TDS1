@@ -12,9 +12,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Commit update by 24f3000719@ds.study.iitm.ac.in
+    - name: 24f3000719@ds.study.iitm.ac.in
       run: |
         echo "Daily update: $(date)" >> daily-update.txt
+        echo "24f3000719@ds.study.iitm.ac.in" 
         git config user.name "github-actions[bot]"
         git config user.email "24f3000719@ds.study.iitm.ac.in"
         git add daily-update.txt
