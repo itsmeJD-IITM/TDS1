@@ -2,30 +2,26 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '30 14 * * *'
+    - cron: '0 12 * * *'  # Runs at 12:00 UTC daily (5:30 PM IST)
   workflow_dispatch:
 
 jobs:
   daily-commit:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Configure Git
-        run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
+        with:
+          fetch-depth: 0
       
       - name: Commit update by 24f3000719@ds.study.iitm.ac.in
         run: |
-          # Create unique filename based on timestamp
-          timestamp=$(date '+%Y%m%d_%H%M%S')
-          echo "Automated commit at $(date)" > "commit_$timestamp.txt"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add .
-          git commit -m "Automated commit - $(date '+%Y-%m-%d %H:%M:%S')"
-          git push
+          date > timestamp.txt
+          
+          git add timestamp.txt
+          git commit -m "Automated commit $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin main
